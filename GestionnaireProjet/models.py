@@ -1,8 +1,10 @@
-from datetime import timezone,timedelta,datetime
+from datetime import timezone, timedelta, datetime
 
 import django
 from django.db import models
-
+from django import forms
+from django.forms import ModelForm
+from django.forms import ModelChoiceField
 
 class Employee(models.Model):  # class abstraite
 
@@ -26,7 +28,6 @@ class Operator(Employee):  # hérite de Employee
 
 
 class Project(models.Model):
-
     title = models.CharField(max_length=100)
     deliveryDate = models.DateField(default=django.utils.timezone.now)
     creationDate = models.DateField(default=django.utils.timezone.now)
@@ -39,15 +40,18 @@ class Project(models.Model):
 #     idProject =
 #     idTask =
 
-
 class Task(models.Model):
-
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
     status = models.CharField(max_length=50)
     estimatedTime = models.IntegerField(default=1)
     startDate = models.DateField(default=django.utils.timezone.now)
     priority = models.IntegerField(default=0)
-    project = models.ForeignKey(Project, default=0, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     responsible = models.ForeignKey(ProjectManager, on_delete=models.CASCADE)
 
+
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'status', 'estimatedTime', 'startDate', 'priority', 'project', 'responsible']
