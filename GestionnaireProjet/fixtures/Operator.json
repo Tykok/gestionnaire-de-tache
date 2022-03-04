@@ -1,0 +1,29 @@
+[
+  {
+    "model": "GestionnaireProjet.Operator",
+    "pk": 1,
+    "fields": {
+      "lastName": "Operator",
+      "firstName": "Lennon",
+      "status": "-"
+    }
+  },
+    {
+    "model": "GestionnaireProjet.Operator",
+    "pk": 2,
+    "fields": {
+      "lastName": "Operator",
+      "firstName": "Marley",
+      "status": "-"
+    }
+  },
+    {
+    "model": "GestionnaireProjet.Operator",
+    "pk": 3,
+    "fields": {
+      "lastName": "Operator",
+      "firstName": "Duriff",
+      "status": "-"
+    }
+  }
+]

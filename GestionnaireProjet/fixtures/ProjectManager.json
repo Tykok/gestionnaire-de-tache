@@ -1,0 +1,29 @@
+[
+  {
+    "model": "GestionnaireProjet.ProjectManager",
+    "pk": 1,
+    "fields": {
+      "lastName": "Manager",
+      "firstName": "Lennon",
+      "status": "-"
+    }
+  },
+    {
+    "model": "GestionnaireProjet.ProjectManager",
+    "pk": 2,
+    "fields": {
+      "lastName": "Manager",
+      "firstName": "Marley",
+      "status": "-"
+    }
+  },
+    {
+    "model": "GestionnaireProjet.ProjectManager",
+    "pk": 3,
+    "fields": {
+      "lastName": "Manager",
+      "firstName": "Duriff",
+      "status": "-"
+    }
+  }
+]

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All projects</title>
+</head>
+<body>
+<h1>Projects list</h1>
+
+<ul>
+    {% for i in all_projects %}
+    <li>
+        <bold>{{i.title}}</bold>
+        <p>date de livraison : {{i.deliveryDate}}</p>
+        <p>date de creation : {{i.creationDate}}</p>
+        <p>status: {{i.status}}</p>
+        <p>date de début: {{i.startDate}}</p>
+        <p>responsable: {{i.responsible}}</p>
+        <p>tâches: </p>
+        {% for task in i.tasks %}
+        <ol>
+            <li>
+                <p>- titre de la tâche : {{task.title}}</p>
+                <p>- description : {{task.description}}</p>
+                <p>- status : {{task.status}}</p>
+                <p>- estimation : {{task.estimatedTime}}</p>
+                <p>- date de début : {{task.startDate}}</p>
+
+
+            </li>
+        </ol>
+        {% endfor %}
+
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>
