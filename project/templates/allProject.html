@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All project</title>
+</head>
+
+<body>
+    <h1>Project list</h1>
+
+    <table border="1">
+        <tr>
+            <th>Name of project</th>
+            <th>Delivery date</th>
+            <th>Creation date</th>
+            <th>Status</th>
+            <th>Responsible</th>
+            <th>List of tasks</th>
+            <th>List of members</th>
+        </tr>
+        {% for project in allProject %}
+        <tr>
+            <td>
+                {{ project.title }}
+            </td>
+            <td>
+                {{ project.deliveryDate }}
+            </td>
+            <td>
+                {{ project.creationDate }}
+            </td>
+            <td>
+                {{ project.status }}
+            </td>
+            <td>
+                {{ project.responsible }}
+            </td>
+            <td>
+                <a href="">More</a>
+            </td>
+            <td>
+                <a href="">More</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

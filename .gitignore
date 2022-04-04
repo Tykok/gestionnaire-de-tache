@@ -1,1 +1,11 @@
-/env
+# Virtual env folder
+env/
+
+# Generated python files
+*__pycache__*
+*.py[cod]
+__init__.py
+
+# PyCharm .idea
+idea/
+.idea
