@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ project.title }}</title>
+</head>
+
+<body>
+    <h1>Project list</h1>
+
+
+    <b>Name of project </b> : {{ project.title }}
+    <br />
+    <b>Delivery date </b> : {{ project.deliveryDate }}
+    <br />
+    <b>Creation date </b> : {{ project.creationDate }}
+    <br />
+    <b>Status </b> : {{ project.status }}
+    <br />
+    <b>Responsible </b> : {{ project.responsible }}
+    <br />
+
+    <br /> <br />
+    <a href="/project/new">
+        <button>Add a project</button>
+    </a>
+    <br /><br />
+    <a href="/project/all">
+        <button>Show all project</button>
+    </a>
+</body>
+
+</html>

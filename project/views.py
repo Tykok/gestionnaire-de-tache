@@ -1,13 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from GestionnaireProjet.models import Project
+from .models import ProjectForm
+from django.shortcuts import render, redirect
 
 # Create your models here.
+
+
 def index(request):
-    return HttpResponse("Page d'accueil des projets")
+    return render(request, 'home.html')
+
 
 def getAllProject(request):
     allProject = Project.objects.all()
     return render(request, 'allProject.html', {'allProject': allProject})
 
-    
+
+def createNewProject(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save()
+            print(project.id)
+            return redirect(f"get/{project.id}")
+    else:
+        form = ProjectForm()
+    return render(request, 'addProject.html', {'form': form})
+
+
+def getProjectWithId(request, id):
+    project = Project.objects.get(id=id)
+    return render(request, 'project.html', {'project': project})

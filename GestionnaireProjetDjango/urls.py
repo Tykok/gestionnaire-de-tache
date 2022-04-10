@@ -8,5 +8,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks', tasksView),
     path('tasksform', task_creation, name="task_creation"),
-    path('project', include("project.urls")),
+    path('project/', include("project.urls")),
 ]
