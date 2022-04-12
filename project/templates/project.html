@@ -58,7 +58,7 @@
         <button>Show all project</button>
     </a>
     <br /><br />
-    <a href="/project/delete/{{ project.id }}">
+    <a href="/project/delete/{{ project.id }}" onclick="return confirm('Are you sure you would like to delete this project ?');">
         <button>Delete this project</button>
     </a>
 </body>
