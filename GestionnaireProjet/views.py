@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from datetime import datetime
-from .models import Task, TaskForm, Project, ProjectManager,ProjectForm
+from .models import Task, TaskForm, Project, ProjectManager, ProjectForm
 
 
 def index(request):
@@ -11,7 +11,12 @@ def index(request):
 
 def tasksView(request):
     allTasks = Task.objects.all()
-    return render(request, 'tasks.html', {'all_tasks': allTasks})
+    return render(request, 'allTasks.html', {'all_tasks': allTasks})
+
+
+def getATask(request, id):
+    task = Task.objects.get(id=id)
+    return render(request, 'task.html', {'task': task})
 
 
 def task_creation(request):
@@ -26,6 +31,7 @@ def task_creation(request):
 
     # projects section
 
+
 def project_creation(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
@@ -36,6 +42,7 @@ def project_creation(request):
         form = ProjectForm
     return render(request, 'projectsForm.html', {'form': form})
 
+
 def projectsView(request):
     allProjects = Project.objects.all()
     for project in allProjects:
@@ -45,10 +52,9 @@ def projectsView(request):
         if not allTasks:
             project.status = 'en pause'
 
-
         now = datetime.now()
 
-        years =  int(project.deliveryDate.strftime("%Y"))
+        years = int(project.deliveryDate.strftime("%Y"))
         months = int(project.deliveryDate.strftime("%m"))
         days = int(project.deliveryDate.strftime("%d"))
         delivery = datetime(years, months, days)
@@ -68,6 +74,10 @@ def projectsView(request):
         if not allTaskPlannified:
             project.status = 'en pause'
 
-
     return render(request, 'projects.html', {'all_projects': allProjects})
 
+
+def deleteTask(request, id):
+    task = Task.objects.get(id=id)
+    task.delete()
+    return redirect("/tasks")

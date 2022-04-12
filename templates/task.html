@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }}</title>
+</head>
+
+<body>
+    <h1>{{ task.title }}</h1>
+
+    <b>Title</b> : {{ task.title }}
+    <br />
+    <b>Description</b> : {{ task.description }}
+    <br />
+    <b>Status</b> : {{ task.status }}
+    <br />
+    <b>Estimated time</b> : {{ task.estimatedTime }}
+    <br />
+    <b>Date to start this task</b> : {{ task.startDate }}
+    <br />
+    <b>Priority</b> : {{ task.priority }}
+    <br />
+    <b>Project</b> : {{ task.project }}
+    <br />
+    <b>Responsible</b> : {{ task.responsible }}
+    <br />
+
+    <br /><br />
+    <a href="/task/delete/{{ task.id }}" onclick="return confirm('Are you sure you would like to delete this task ?');">
+        <button>Delete this task</button>
+    </a>
+</body>
+
+</html>
