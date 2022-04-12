@@ -94,3 +94,18 @@ def deleteTask(request, id):
     task = Task.objects.get(id=id)
     task.delete()
     return redirect("/tasks")
+
+def updateTask(request, id):
+    taskToUpdate = Task.objects.get(id=id)
+    form = TaskForm(request.POST, instance=taskToUpdate)
+
+    if request.method == 'POST':
+        # une erreur se produit à ce niveau, impossible de mettre à jour et pas de piste pour régler le problèùe :/
+        if form.is_valid():
+            form.save()
+        return redirect("/tasks")
+
+    else:
+        form = ProjectForm(instance=taskToUpdate)
+        return render(request, 'taskUpdate.html', {'form': form, 'taskId': id})
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <form action="{% url 'update_task' taskId %}" method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="button" type="submit">Mettre à jour la tâche</button>
+    </form>
+
+
+</body>
+
+</html>
