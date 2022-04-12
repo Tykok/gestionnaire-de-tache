@@ -20,7 +20,6 @@ def createNewProject(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             project = form.save()
-            print(project.id)
             return redirect(f"get/{project.id}")
     else:
         form = ProjectForm()
@@ -31,3 +30,9 @@ def getProjectWithId(request, id):
     allTasks = Task.objects.filter(project=id)
     project = Project.objects.get(id=id)
     return render(request, 'project.html', {'project': project, 'allTasks': allTasks})
+
+
+def deleteProject(request, id):
+    project = Project.objects.get(id=id)
+    project.delete()
+    return redirect("/project/all")

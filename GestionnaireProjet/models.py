@@ -35,13 +35,14 @@ class Project(models.Model):
     status = models.CharField(max_length=50)
     responsible = models.ForeignKey(ProjectManager, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.id} - {self.title}"
+
+
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
         fields = ['title', 'creationDate', 'responsible']
-    def __str__(self):
-        return f"{self.id} - {self.title}"
-
 
 
 class Task(models.Model):
