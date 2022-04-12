@@ -6,7 +6,7 @@ from .models import Task, TaskForm, Project, ProjectManager, ProjectForm
 
 
 def index(request):
-    return HttpResponse("Page d'accueil")
+    return render(request, 'home.html')
 
 
 def tasksView(request):
