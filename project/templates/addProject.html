@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New project</title>
+</head>
+
+<body>
+
+    <form action="" method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="button" type=submit ">Create the project</button>
+
+    </form>
+
+
+</body>
+
+</html>
