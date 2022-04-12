@@ -16,13 +16,12 @@
             <th>Creation date</th>
             <th>Status</th>
             <th>Responsible</th>
-            <th>List of tasks</th>
-            <th>List of members</th>
+            <th>Show more</th>
         </tr>
         {% for project in allProject %}
         <tr>
             <td>
-                {{ project.title }}
+                {{ project.title }} - {{ project.id }}
             </td>
             <td>
                 {{ project.deliveryDate }}
@@ -37,10 +36,7 @@
                 {{ project.responsible }}
             </td>
             <td>
-                <a href="">More</a>
-            </td>
-            <td>
-                <a href="">More</a>
+                <a href="/project/get/{{project.id}}">See this project</a>
             </td>
         </tr>
         {% endfor %}

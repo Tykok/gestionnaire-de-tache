@@ -7,8 +7,7 @@
 </head>
 
 <body>
-    <h1>Project list</h1>
-
+    <h1>Project {{ project.title }}</h1>
 
     <b>Name of project </b> : {{ project.title }}
     <br />
@@ -20,6 +19,31 @@
     <br />
     <b>Responsible </b> : {{ project.responsible }}
     <br />
+
+    <h2>List of task for {{ project.title }}</h2>
+    <table border="1">
+        <tr>
+
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Estimated time</th>
+            <th>Start date</th>
+            <th>Priority</th>
+            <th>Responsible</th>
+        </tr>
+        {% for task in allTasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.estimatedTime }}</td>
+            <td>{{ task.startDate }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.responsible }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
     <br /> <br />
     <a href="/project/new">

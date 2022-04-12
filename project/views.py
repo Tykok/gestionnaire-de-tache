@@ -3,8 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from GestionnaireProjet.models import Project
 from .models import ProjectForm
 from django.shortcuts import render, redirect
-
-# Create your models here.
+from GestionnaireProjet.models import Task
 
 
 def index(request):
@@ -29,5 +28,6 @@ def createNewProject(request):
 
 
 def getProjectWithId(request, id):
+    allTasks = Task.objects.filter(project=id)
     project = Project.objects.get(id=id)
-    return render(request, 'project.html', {'project': project})
+    return render(request, 'project.html', {'project': project, 'allTasks': allTasks})
