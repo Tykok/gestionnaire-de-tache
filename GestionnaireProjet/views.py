@@ -43,6 +43,19 @@ def project_creation(request):
     return render(request, 'projectsForm.html', {'form': form})
 
 
+def project_update(request, projectTitle):
+    projectToUpdate = Project.objects.get(title=projectTitle)
+    form = ProjectForm(request.POST, instance=projectToUpdate)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect("/projects")
+    else:
+        form = ProjectForm(instance=projectToUpdate)
+    return render(request, 'projectsFormUpdate.html', {'form': form})
+
+
 def projectsView(request):
     allProjects = Project.objects.all()
     for project in allProjects:

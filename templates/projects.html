@@ -10,7 +10,10 @@
 <ul>
     {% for i in all_projects %}
     <li>
-        <bold>{{i.title}}</bold>
+        <bold>{{i.title}}    <form action={% url 'project_update' i.title %}>
+    <input type="submit" value="update" />
+</form>
+</bold>
         <p>date de livraison : {{i.deliveryDate}}</p>
         <p>date de creation : {{i.creationDate}}</p>
         <p>status: {{i.status}}</p>
@@ -30,7 +33,6 @@
             </li>
         </ol>
         {% endfor %}
-
 
     </li>
     {% endfor %}

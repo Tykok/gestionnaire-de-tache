@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update a new project</title>
+</head>
+<body>
+    <form action="{% url 'project_update' form.title.value %}" method = "post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button" type=submit">Mettre a jour le projet</button>
+
+    </form>
+
+</body>
+</html>
