@@ -6,6 +6,7 @@ from django import forms
 from django.forms import ModelForm
 from django.forms import ModelChoiceField
 
+
 class Employee(models.Model):  # class abstraite
 
     lastName = models.CharField(max_length=255)
@@ -34,6 +35,9 @@ class Project(models.Model):
     status = models.CharField(max_length=50)
     responsible = models.ForeignKey(ProjectManager, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.id} - {self.title}"
+
 
 # class ProjectTask(models.Model):
 #     id =
@@ -54,4 +58,5 @@ class Task(models.Model):
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'status', 'estimatedTime', 'startDate', 'priority', 'project', 'responsible']
+        fields = ['title', 'description', 'status', 'estimatedTime',
+                  'startDate', 'priority', 'project', 'responsible']
