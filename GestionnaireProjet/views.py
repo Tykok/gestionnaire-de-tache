@@ -1,8 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
-
-from .models import Task, TaskForm, Project, ProjectManager
+from datetime import datetime
+from .models import Task, TaskForm, Project, ProjectManager,ProjectForm
 
 
 def index(request):
@@ -19,7 +19,55 @@ def task_creation(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("/tasks")
     else:
         form = TaskForm()
     return render(request, 'tasksform.html', {'form': form})
+
+    # projects section
+
+def project_creation(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/projects")
+    else:
+        form = ProjectForm
+    return render(request, 'projectsForm.html', {'form': form})
+
+def projectsView(request):
+    allProjects = Project.objects.all()
+    for project in allProjects:
+        allTasks = Task.objects.filter(project_id=project.id)
+        project.tasks = allTasks
+
+        if not allTasks:
+            project.status = 'en pause'
+
+
+        now = datetime.now()
+
+        years =  int(project.deliveryDate.strftime("%Y"))
+        months = int(project.deliveryDate.strftime("%m"))
+        days = int(project.deliveryDate.strftime("%d"))
+        delivery = datetime(years, months, days)
+
+        allTaskPlannified = False
+        for task in allTasks:
+            # si toutes les taches sont en pause ou ne possède pas d'estimation alors le projet est en pause
+            if task.status != 'en pause' or task.status != '' or task.estimatedTime:
+                allTaskPlannified = True
+
+            # date de démarrage projet doit correspondre a la date de la première tâche plannifié
+            if not hasattr(project, 'startDate') and task.estimatedTime > 0:
+                project.startDate = task.startDate
+            else:
+                project.startDate = 'information non disponible'
+
+        if not allTaskPlannified:
+            project.status = 'en pause'
+
+
+    return render(request, 'projects.html', {'all_projects': allProjects})
+

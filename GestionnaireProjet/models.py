@@ -34,11 +34,11 @@ class Project(models.Model):
     status = models.CharField(max_length=50)
     responsible = models.ForeignKey(ProjectManager, on_delete=models.CASCADE)
 
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title', 'creationDate', 'responsible']
 
-# class ProjectTask(models.Model):
-#     id =
-#     idProject =
-#     idTask =
 
 class Task(models.Model):
     title = models.CharField(max_length=100)
@@ -48,7 +48,7 @@ class Task(models.Model):
     startDate = models.DateField(default=django.utils.timezone.now)
     priority = models.IntegerField(default=0)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    responsible = models.ForeignKey(ProjectManager, on_delete=models.CASCADE)
+    responsible = models.ForeignKey(Operator, on_delete=models.CASCADE)
 
 
 class TaskForm(ModelForm):
